@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_heimdall
+    restart: always
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: nest_heimdall
+    restart: always
+    ports:
+      - "${APP_PORT}:3000"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    command: ["npx", "nodemon", "dist/main"]
+
+volumes:
+  postgres_data:
