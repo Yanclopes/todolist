@@ -6,9 +6,11 @@ services:
     container_name: postgres_heimdall
     restart: always
     ports:
-      - "${POSTGRES_PORT}:5432"
-    env_file:
-      - .env
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: heimdall_user
+      POSTGRES_PASSWORD: heimdall_pass
+      POSTGRES_DB: heimdall_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -17,14 +19,15 @@ services:
     container_name: nest_heimdall
     restart: always
     ports:
-      - "${APP_PORT}:3000"
+      - "3000:3000"
     depends_on:
       - postgres
     env_file:
       - .env
     volumes:
-      - ./:/app
-    command: ["npx", "nodemon", "dist/main"]
+      - .:/app
+      - /app/node_modules
+    command: ["npm", "run", "start:dev"]
 
 volumes:
   postgres_data:
