@@ -1,18 +1,18 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class PagedQueryDto {
   @IsNumber()
-  @Transform((value) => Number(value))
-  @IsNotEmpty()
+  @Type(() => Number)
+  @IsOptional()
   page: number = 1;
 
   @IsNumber()
-  @Transform((value) => Number(value))
-  @IsNotEmpty()
+  @Type(() => Number)
+  @IsOptional()
   limit: number = 10;
 
   @IsString()
   @IsOptional()
-  orderBy: string;
+  orderBy?: string;
 }
