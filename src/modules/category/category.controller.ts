@@ -18,30 +18,30 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
-  create(@Body() dto: CreateCategoryDto) {
-    return this.categoryService.create(dto);
+  async create(@Body() dto: CreateCategoryDto) {
+    return await this.categoryService.create(dto);
   }
 
   @Get()
-  findAll(@Query() query: ListCategoryDto) {
-    return this.categoryService.findAll(query);
+  async findAll(@Query() query: ListCategoryDto) {
+    return await this.categoryService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.categoryService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.categoryService.findOne(id);
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: Partial<CreateCategoryDto>,
   ) {
-    return this.categoryService.update(id, dto);
+    return await this.categoryService.update(id, dto);
   }
 
   @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.categoryService.delete(id);
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.categoryService.delete(id);
   }
 }

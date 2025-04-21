@@ -18,30 +18,30 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post()
-  create(@Body() dto: CreateUserDto) {
-    return this.userService.create(dto);
+  async create(@Body() dto: CreateUserDto) {
+    return await this.userService.create(dto);
   }
 
   @Get()
-  findAll(@Query() query: ListUserDto) {
-    return this.userService.findAll(query);
+  async findAll(@Query() query: ListUserDto) {
+    return await this.userService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.userService.findOne(id);
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: Partial<CreateUserDto>,
   ) {
-    return this.userService.update(id, dto);
+    return await this.userService.update(id, dto);
   }
 
   @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.delete(id);
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.userService.delete(id);
   }
 }

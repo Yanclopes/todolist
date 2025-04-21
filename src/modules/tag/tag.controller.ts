@@ -17,31 +17,29 @@ import { ListTagDto } from './dto/list-tag.dto';
 export class TagController {
   constructor(private readonly tagService: TagService) {}
 
-  @Post()
-  create(@Body() dto: CreateTagDto) {
-    return this.tagService.create(dto);
+  @Post() async create(@Body() dto: CreateTagDto) {
+    return await this.tagService.create(dto);
   }
 
   @Get()
-  findAll(@Query() query: ListTagDto) {
-    return this.tagService.findAll(query);
+  async findAll(@Query() query: ListTagDto) {
+    return await this.tagService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.tagService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.tagService.findOne(id);
   }
 
-  @Put(':id')
-  update(
+  @Put(':id') async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: Partial<CreateTagDto>,
   ) {
-    return this.tagService.update(id, dto);
+    return await this.tagService.update(id, dto);
   }
 
   @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.tagService.delete(id);
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.tagService.delete(id);
   }
 }

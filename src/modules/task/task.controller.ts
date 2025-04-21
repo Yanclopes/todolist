@@ -17,31 +17,26 @@ import { ListTaskDto } from './dto/list-task.dto';
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  @Post()
-  create(@Body() dto: CreateTaskDto) {
-    return this.taskService.create(dto);
+  @Post() async create(@Body() dto: CreateTaskDto) {
+    return await this.taskService.create(dto);
   }
 
-  @Get()
-  findAll(@Query() query: ListTaskDto) {
-    return this.taskService.findAll(query);
+  @Get() async findAll(@Query() query: ListTaskDto) {
+    return await this.taskService.findAll(query);
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.taskService.findOne(id);
+  @Get(':id') async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.taskService.findOne(id);
   }
 
-  @Put(':id')
-  update(
+  @Put(':id') async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: Partial<CreateTaskDto>,
   ) {
-    return this.taskService.update(id, dto);
+    return await this.taskService.update(id, dto);
   }
 
-  @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.taskService.delete(id);
+  @Delete(':id') async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.taskService.delete(id);
   }
 }
