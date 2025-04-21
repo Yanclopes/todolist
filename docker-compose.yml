@@ -3,20 +3,22 @@ version: '3.8'
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres_heimdall
+    container_name: postgres_todolist
     restart: always
     ports:
       - "5432:5432"
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: heimdall_user
-      POSTGRES_PASSWORD: heimdall_pass
-      POSTGRES_DB: heimdall_db
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   app:
     build: .
-    container_name: nest_heimdall
+    container_name: nest_todolist
     restart: always
     ports:
       - "3000:3000"
@@ -26,7 +28,6 @@ services:
       - .env
     volumes:
       - .:/app
-      - /app/node_modules
     command: ["npm", "run", "start:dev"]
 
 volumes:

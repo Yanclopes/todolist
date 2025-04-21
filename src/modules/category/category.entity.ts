@@ -2,16 +2,13 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { TaskEntity } from '../task/task.entity';
 
 @Entity()
-export class UserEntity {
+export class CategoryEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
-  @Column({ unique: true })
-  email: string;
-
-  @OneToMany(() => TaskEntity, (task) => task.user)
+  @OneToMany(() => TaskEntity, (task) => task.category)
   tasks: TaskEntity[];
 }
