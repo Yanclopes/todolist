@@ -1,3 +1,3 @@
-import { PagedQueryDto } from '../../../communs/dto/paged-query.dto';
+import { PagedQueryDto } from '../../../common/dto/paged-query.dto';
 
 export class ListTaskDto extends PagedQueryDto {}

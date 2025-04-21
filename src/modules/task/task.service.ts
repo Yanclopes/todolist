@@ -4,7 +4,7 @@ import { TaskEntity } from './task.entity';
 import { Repository } from 'typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { ListTaskDto } from './dto/list-task.dto';
-import { PagedResponseDto } from '../../communs/dto/paged-response.dto';
+import { PagedResponseDto } from '../../common/dto/paged-response.dto';
 
 @Injectable()
 export class TaskService {

@@ -1,4 +1,3 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import {
   DATABASE_HOST,
   DATABASE_PORT,
@@ -6,8 +5,9 @@ import {
   DATABASE_PASSWORD,
   DATABASE_NAME,
 } from '../config';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-export const typeOrmConfig: TypeOrmModuleOptions = {
+export const typeOrmConfig: PostgresConnectionOptions = {
   type: 'postgres',
   host: DATABASE_HOST,
   port: DATABASE_PORT,
@@ -15,6 +15,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   password: DATABASE_PASSWORD,
   database: DATABASE_NAME,
   entities: [__dirname + '/../../modules/**/*.entity.{js,ts}'],
-  synchronize: true,
+  synchronize: false,
   logging: true,
+  migrations: [__dirname + '/../../migrations/*{.ts,.js}']
 };

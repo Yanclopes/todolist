@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ListUserDto } from './dto/list-user.dto';
-import { PagedResponseDto } from '../../communs/dto/paged-response.dto';
+import { PagedResponseDto } from '../../common/dto/paged-response.dto';
 
 @Injectable()
 export class UserService {
